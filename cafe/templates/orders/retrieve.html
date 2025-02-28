@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Заказ №{{ order.id }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Заказ №{{ order.id }} </h1>
+    <h1 class="title">Статус: {{ order.get_status_display }}</h1>
+    <div class="box">
+        <p><strong>Стол:</strong> {{ order.table_number }}</p>
+        <p><strong>Общая сумма:</strong> {{ order.total_price }} руб.</p>
+        <p><strong>Дата создания:</strong> {{ order.created_at }}</p>
+    </div>
+
+    <!-- Форма для изменения статуса-->
+    <form action="{% url 'update_order_status' order.id %}" method="post">
+        {% csrf_token %}
+        <div class="field">
+            <label class="label">Изменить статус</label>
+            <div class="control">
+                <div class="select">
+                    <select name="status">
+                        {% for status_value, status_label in order_status_choices %}
+                        <option value="{{ status_value }}" {% if order.status == status_value %}selected{% endif %}>
+                            {{ status_label }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button class="button is-warning" type="submit">Обновить статус</button>
+    </form>
+
+    <hr>
+
+    <!-- Список блюд в заказе -->
+    <h2 class="subtitle">Состав заказа</h2>
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order.order_items.all %}
+            <tr>
+                <td>{{ item.dish.name }}</td>
+                <td>{{ item.dish.price }} руб.</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">Заказ пока пуст</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+
+{% endblock %}

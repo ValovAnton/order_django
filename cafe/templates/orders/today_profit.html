@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Выручка за сутки{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="notification is-primary has-text-centered">
+        <h1 class="title">Выручка за {% if date == today %}сегодня{% else %}{{ date }}{% endif %}</h1>
+        <p class="subtitle">Общая выручка готовых заказов </p>
+        <p class="is-size-3 has-text-weight-bold">{{ profit }} руб.</p>
+    </div>
+    <form method="get" action="{% url 'today_profit' %}">
+    <div class="field">
+        <label class="label">Выберите дату</label>
+        <div class="control">
+            <input class="input" type="date" name="date" value="{{ date|default:today }}">
+        </div>
+    </div>
+    <button type="submit" class="button is-primary">Посмотреть выручку</button>
+</form>
+
+
+</div>
+{% endblock %}

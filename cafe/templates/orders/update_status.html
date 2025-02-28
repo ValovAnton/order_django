@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Изменить статус{% endblock %}
+
+{% block content %}
+<h2 class="title is-2">Изменить статус заказа</h2>
+<form method="post" class="box">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button is-primary">Сохранить</button>
+</form>
+{% endblock %}

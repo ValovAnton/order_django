@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Создание заказа{% endblock %}
+
+{% block content %}
+<h2>Создание заказа</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="number" name="table_number" min="1" placeholder="Номер стола" required>
+
+    <div id="order-items">
+        <div class="order-item">
+            <!-- Выбор блюда -->
+            <select name="order_items[][dish_id]" class="dish-select">
+                <option value="">Выбрать из меню</option>
+                {% for dish in dishes %}
+                    <option value="{{ dish.id }}" data-name="{{ dish.name }}" data-price="{{ dish.price }}">
+                        {{ dish.name }} - {{ dish.price }} руб.
+                    </option>
+                {% endfor %}
+            </select>
+
+            <span> или </span>
+
+            <!-- Ввод вручную -->
+            <input type="text" name="order_items[][name]" placeholder="Название блюда" required>
+            <input type="number" name="order_items[][price]" placeholder="Цена" step="0.01", required="True">
+            <button type="button" class="btn btn-danger remove-item">Удалить</button>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-secondary mt-2" id="add-item">Добавить блюдо</button>
+    <button type="submit" class="btn btn-primary mt-2">Создать заказ</button>
+</form>
+
+<script>
+    document.getElementById("add-item").addEventListener("click", function() {
+        let newItem = document.querySelector(".order-item").cloneNode(true);
+
+        // Очистка значений в новом поле
+        newItem.querySelector("select").selectedIndex = 0;
+        newItem.querySelector("input[name='order_items[][name]']").value = "";
+        newItem.querySelector("input[name='order_items[][price]']").value = "";
+
+        document.getElementById("order-items").appendChild(newItem);
+    });
+
+    document.querySelector("#order-items").addEventListener("click", function(e) {
+        if (e.target.classList.contains("remove-item")) {
+            e.target.parentElement.remove();
+        }
+    });
+
+
+    document.querySelector("#order-items").addEventListener("change", function(e) {
+    if (e.target.classList.contains("dish-select")) {
+        let selectedOption = e.target.options[e.target.selectedIndex];
+        let nameInput = e.target.parentElement.querySelector("input[name='order_items[][name]']");
+        let priceInput = e.target.parentElement.querySelector("input[name='order_items[][price]']");
+
+        if (selectedOption.value) {
+            // Подстановка названия блюда
+            nameInput.value = selectedOption.dataset.name || "";
+
+            // Подстановка цены с точностью до двух знаков
+            let price = parseFloat(selectedOption.dataset.price);
+            priceInput.value = price ? price.toFixed(2) : "";
+        }
+    }
+});
+
+</script>
+{% endblock %}

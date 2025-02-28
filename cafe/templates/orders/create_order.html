@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Создание заказа{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="title is-4">Создание заказа</h2>
+
+    <form method="post" class="box">
+        {% csrf_token %}
+
+        <div class="field">
+            <label class="label">Номер стола</label>
+            <div class="control">
+                <input class="input" type="number" name="table_number" min="1" placeholder="Введите номер стола" required>
+            </div>
+        </div>
+
+        <div id="order-items">
+            <div class="order-item box">
+                <div class="field">
+                    <label class="label">Выбрать из меню</label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="order_items[][dish_id]" class="dish-select">
+                                <option value="">Выберите блюдо</option>
+                                {% for dish in dishes %}
+                                    <option value="{{ dish.id }}" data-name="{{ dish.name }}" data-price="{{ dish.price }}">
+                                        {{ dish.name }} - {{ dish.price }} руб.
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="has-text-centered mb-2"><strong>или</strong></div>
+
+                <div class="field">
+                    <label class="label">Название блюда</label>
+                    <div class="control">
+                        <input class="input" type="text" name="order_items[][name]" placeholder="Название блюда" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Цена</label>
+                    <div class="control">
+                        <input class="input" type="number" name="order_items[][price]" placeholder="Введите цену" step="0.01" required>
+                    </div>
+                </div>
+
+                <div class="control">
+                    <button type="button" class="button is-danger is-light remove-item">Удалить</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons mt-3">
+            <button type="button" class="button is-info" id="add-item">Добавить блюдо</button>
+            <button type="submit" class="button is-primary">Создать заказ</button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    document.getElementById("add-item").addEventListener("click", function () {
+        let orderItems = document.getElementById("order-items");
+        let newItem = document.querySelector(".order-item").cloneNode(true);
+
+        newItem.querySelector("select").selectedIndex = 0;
+        newItem.querySelector("input[name='order_items[][name]']").value = "";
+        newItem.querySelector("input[name='order_items[][price]']").value = "";
+
+        orderItems.appendChild(newItem);
+    });
+
+    document.querySelector("#order-items").addEventListener("click", function (e) {
+        if (e.target.classList.contains("remove-item")) {
+            let item = e.target.closest(".order-item");
+            if (document.querySelectorAll(".order-item").length > 1) {
+                item.remove();
+            }
+        }
+    });
+
+    document.querySelector("#order-items").addEventListener("change", function (e) {
+        if (e.target.classList.contains("dish-select")) {
+            let selectedOption = e.target.options[e.target.selectedIndex];
+            let parentBox = e.target.closest(".order-item");
+
+            let nameInput = parentBox.querySelector("input[name='order_items[][name]']");
+            let priceInput = parentBox.querySelector("input[name='order_items[][price]']");
+
+            if (selectedOption.value) {
+                // Подстановка названия блюда
+                nameInput.value = selectedOption.dataset.name || "";
+
+                // Подстановка цены с точностью до двух знаков
+                let price = parseFloat(selectedOption.dataset.price);
+                priceInput.value = price ? price.toFixed(2) : "";
+            }
+        }
+    });
+</script>
+
+{% endblock %}

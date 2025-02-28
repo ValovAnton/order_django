@@ -1,0 +1,15 @@
+services:
+  django:
+    build: .
+    container_name: django_cafe
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/cafe
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py fulldb &&
+             python manage.py runserver 0.0.0.0:8000"
