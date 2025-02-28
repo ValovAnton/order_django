@@ -31,7 +31,8 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
     status = serializers.ChoiceField(choices=OrderStatus.choices)
-    order_items = OrderItemSerializer(many=True)
+    order_items = OrderItemSerializer(many=True, read_only=True)
+    dishes = DishSerializer(many=True, write_only=True)
 
     class Meta:
         model = Order
@@ -43,32 +44,21 @@ class OrderSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "order_items",
+            "dishes",
         ]
         read_only_fields = ["id", "total_price", "created_at", "updated_at"]
-        extra_kwargs = {
-            "status": {"read_only": True, "required": False},
-        }
 
     def validate(self, attrs):
         OrderValidator.validate(attrs)
         return attrs
 
     def create(self, validated_data):
-        order_items_data = validated_data.pop("order_items")
+        dishes = validated_data.pop("dishes")
         table = validated_data.pop("table_number")
-
-        order = OrderService.create_order(table=table, items_data=order_items_data)
-
+        order = OrderService.create_order(table=table, items_data=dishes)
         return order
 
     def update(self, instance, validated_data):
         pk = instance.pk
-        order = OrderService.update_order(id=pk, order_data=validated_data)
+        order = OrderService.update_order(id=pk, order_data=validated_data)  # TODO
         return order
-
-
-class OrderStatusUpdateSerializer(serializers.Serializer):
-    status = serializers.ChoiceField(choices=OrderStatus.choices)
-
-    def update(self, instance, validated_data):
-        return OrderService.update_order_status(instance, validated_data["status"])

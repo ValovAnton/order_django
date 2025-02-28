@@ -2,19 +2,16 @@ from rest_framework.exceptions import ValidationError
 
 
 class OrderValidator:
+
     @classmethod
     def validate(cls, attrs):
         table_number = attrs.get("table_number")
         cls.validate_table(table_number)
-
-        order_items = attrs.get("order_items", [])
-        if not order_items:
-            raise ValidationError(
-                {"order_items": "Заказ должен содержать хотя бы одну позицию."}
-            )
-        for item in order_items:
-            OrderItemValidator.validate(item)
-
+        dishes = attrs.get("dishes", [])
+        if not dishes:
+            raise ValidationError({"dishes": "Заказ должен содержать блюда."})
+        for dish in dishes:
+            DishValidator.validate(dish)
         return attrs
 
     @staticmethod

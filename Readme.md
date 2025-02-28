@@ -65,18 +65,14 @@ POST /orders/
  {
    "table_number": 11,
    "status": "Pending",
-   "order_items": [
+   "dishes": [
       {
-         "dish": {
             "name": "Чё-нить поесть, че-нить попить",
             "price": "1000"
-         }
       },
       {
-         "dish": {
             "name": "и компот",
             "price": "10"
-         }
       }
    ]
 }
@@ -85,16 +81,19 @@ POST /orders/
 #### response:
 
 ``` json
+	
+Response body
+Download
 {
-  "id": 8,
+  "id": 16,
   "table_number": 11,
   "total_price": 1010,
   "status": "Pending",
-  "created_at": "2025-02-28T08:02:19.835521Z",
-  "updated_at": "2025-02-28T08:02:19.835564Z",
+  "created_at": "2025-02-28T09:54:09.529779Z",
+  "updated_at": "2025-02-28T09:54:09.529808Z",
   "order_items": [
     {
-      "id": 9,
+      "id": 21,
       "dish": {
         "id": 8,
         "name": "Чё-нить поесть, че-нить попить",
@@ -103,7 +102,7 @@ POST /orders/
       "price_at_order_moment": "1000.00"
     },
     {
-      "id": 10,
+      "id": 22,
       "dish": {
         "id": 9,
         "name": "и компот",

@@ -10,8 +10,7 @@ class OrderService:
     def create_order(table: int, items_data: list[dict]) -> Order:
         """Создать заказ с позициями"""
         order = Order.objects.create(table_number=table)
-        for item in items_data:
-            dish_data = item.get("dish")
+        for dish_data in items_data:
             dish, _ = Dish.objects.get_or_create(
                 name=dish_data["name"], price=dish_data["price"]
             )
@@ -25,12 +24,11 @@ class OrderService:
         """функция обновления заказа(статус, номер стола, блюда. Возвращает обновленный заказ"""
         order = Order.objects.get(pk=id)
         table_number = order_data.pop("table_number", order.table_number)
-        order_items = order_data.pop("order_items", [])
+        order_items = order_data.pop("dishes", [])
         order_status = order_data.pop("status", order.status)
         if order_items:
             order.clear_order()
-            for item in order_items:
-                dish_data = item.get("dish")
+            for dish_data in order_items:
                 dish, _ = Dish.objects.get_or_create(
                     name=dish_data["name"], price=dish_data["price"]
                 )

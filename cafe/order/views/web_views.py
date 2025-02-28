@@ -1,17 +1,13 @@
-from audioop import reverse
 from datetime import datetime
-from pyexpat.errors import messages
-
-from django.http import HttpResponseBadRequest
-from django.utils import timezone
 
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
 from django.views import View
 from django.views.generic import ListView, TemplateView
 
-from ..models import Order, Dish, OrderItem
 from ..forms import OrderForm
+from ..models import Order, Dish
 from ..order_enums import OrderStatus
 from ..services import OrderService
 
@@ -30,9 +26,8 @@ class CreateOrderView(View):
 
         if prices != [""] and names != [""]:  # TODO тут подумай
             if len(prices) == len(names):
-
                 for name, price in zip(names, prices):
-                    items_data.append({"dish": {"name": name, "price": price}})
+                    items_data.append({"name": name, "price": price})
 
                 OrderService.create_order(table_number, items_data)
             return redirect("order_list")
