@@ -1,15 +1,17 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
     SpectacularRedocView,
 )
-from order.views.api_views import OrderViewSet
+from rest_framework.routers import DefaultRouter
+
+from order.views.api_views import OrderViewSet, DishViewSet
 
 api_router = DefaultRouter()
 
 api_router.register(r"orders", OrderViewSet)
+api_router.register(r"dishes", DishViewSet)
 
 
 urlpatterns = [

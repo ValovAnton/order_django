@@ -2,11 +2,12 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+from order.models import Order, Dish
 from order.serializers import (
     OrderSerializer,
     OrderStatusUpdateSerializer,
+    DishSerializer,
 )
-from order.models import Order
 
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -24,3 +25,10 @@ class OrderViewSet(viewsets.ModelViewSet):
             updated_order = OrderSerializer(order)
             return Response(updated_order.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DishViewSet(viewsets.ModelViewSet):
+    """Api для работы с Dishes"""
+
+    queryset = Dish.objects.all()
+    serializer_class = DishSerializer

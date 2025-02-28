@@ -30,8 +30,8 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    order_items = OrderItemSerializer(many=True)
     status = serializers.ChoiceField(choices=OrderStatus.choices)
+    order_items = OrderItemSerializer(many=True)
 
     class Meta:
         model = Order
@@ -44,6 +44,10 @@ class OrderSerializer(serializers.ModelSerializer):
             "updated_at",
             "order_items",
         ]
+        read_only_fields = ["id", "total_price", "created_at", "updated_at"]
+        extra_kwargs = {
+            "status": {"read_only": True, "required": False},
+        }
 
     def validate(self, attrs):
         OrderValidator.validate(attrs)
