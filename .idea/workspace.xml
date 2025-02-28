@@ -4,43 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff26f8b6-8eba-48d7-905e-4c7a2048d8ba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/django_cafe_order_project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/management/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/management/commands/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/management/commands/fulldb.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/order_enums.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/services.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/static/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/tests/service_tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/tests/web_tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/urls/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/urls/api_urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/urls/web_urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/validators.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/views/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/order/views/api_views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/pytest.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/templates/orders/create_order.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/templates/orders/list_orders.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/templates/orders/old_create_order.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/templates/orders/retrieve.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/templates/orders/today_profit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe/templates/orders/update_status.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+    <list default="true" id="ff26f8b6-8eba-48d7-905e-4c7a2048d8ba" name="Changes" comment="first commit mvp">
+      <change beforePath="$PROJECT_DIR$/.idea/django_cafe_order_project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +30,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ValovAnton"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ValovAnton/order_django.git",
+    "accountId": "095c9c36-1c81-4861-8448-3de741f01484"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -68,20 +51,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Python tests.Python tests for order.tests.api_tests.TestOrderAPI.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for tests.TestOrderAPI.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for tests.TestOrderAPI.test_get_order_list.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/anton/projects/django_cafe_order_project/cafe&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.black.configuration.BlackFormatterConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python tests.Python tests for order.tests.api_tests.TestOrderAPI.executor": "Run",
+    "Python tests.Python tests for tests.TestOrderAPI.executor": "Run",
+    "Python tests.Python tests for tests.TestOrderAPI.test_get_order_list.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/anton/projects/django_cafe_order_project/cafe",
+    "settings.editor.selected.configurable": "vcs.Git"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": []
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/cafe" />
@@ -177,6 +163,21 @@
       <option name="presentableId" value="Default" />
       <updated>1740159196373</updated>
     </task>
+    <task id="LOCAL-00001" summary="first commit mvp">
+      <option name="closed" value="true" />
+      <created>1740727174762</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1740727174762</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit mvp" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit mvp" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
