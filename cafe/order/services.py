@@ -1,15 +1,15 @@
 from django.utils import timezone
 
-from .models import Order, OrderItem, Dish
-from .order_enums import OrderStatus, ErrorMessage
+from order.models import Order, OrderItem, Dish
+from order.order_enums import OrderStatus, ErrorMessage
 
 
 class OrderService:
 
     @staticmethod
-    def create_order(table: int, items_data: list[dict]) -> Order:
+    def create_order(table: int, status: OrderStatus, items_data: list[dict]) -> Order:
         """Создать заказ с позициями"""
-        order = Order.objects.create(table_number=table)
+        order = Order.objects.create(table_number=table, status=status)
         for dish_data in items_data:
             dish, _ = Dish.objects.get_or_create(
                 name=dish_data["name"], price=dish_data["price"]

@@ -1,7 +1,7 @@
 from django import forms
 
-from .models import Order, OrderItem
-from .order_enums import OrderStatus
+from order.models import Order, OrderItem
+from order.order_enums import OrderStatus
 
 
 class OrderForm(forms.ModelForm):

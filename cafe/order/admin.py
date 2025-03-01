@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 
-from .models import Order, OrderItem, Dish
+from order.models import Order, OrderItem, Dish
 
 
 class OrderItemInline(admin.TabularInline):

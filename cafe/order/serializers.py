@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from .models import Order, OrderItem, Dish
-from .order_enums import OrderStatus
-from .services import OrderService
-from .validators import OrderValidator, OrderItemValidator, DishValidator
+from order.models import Order, OrderItem, Dish
+from order.order_enums import OrderStatus
+from order.services import OrderService
+from order.validators import OrderValidator, OrderItemValidator, DishValidator
 
 
 class DishSerializer(serializers.ModelSerializer):
@@ -55,7 +55,8 @@ class OrderSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         dishes = validated_data.pop("dishes")
         table = validated_data.pop("table_number")
-        order = OrderService.create_order(table=table, items_data=dishes)
+        status = validated_data.pop("status")
+        order = OrderService.create_order(table=table, status=status, items_data=dishes)
         return order
 
     def update(self, instance, validated_data):

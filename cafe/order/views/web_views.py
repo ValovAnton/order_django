@@ -6,10 +6,10 @@ from django.utils import timezone
 from django.views import View
 from django.views.generic import ListView, TemplateView
 
-from ..forms import OrderForm
-from ..models import Order, Dish
-from ..order_enums import OrderStatus
-from ..services import OrderService
+from order.forms import OrderForm
+from order.models import Order, Dish
+from order.order_enums import OrderStatus
+from order.services import OrderService
 
 
 class CreateOrderView(View):

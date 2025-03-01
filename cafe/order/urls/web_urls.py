@@ -1,6 +1,6 @@
-from django.shortcuts import render
 from django.urls import path
-from ..views.web_views import (
+
+from order.views.web_views import (
     CreateOrderView,
     UpdateOrderStatusView,
     OrdersListView,

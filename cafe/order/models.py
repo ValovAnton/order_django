@@ -1,8 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 
-from .order_enums import OrderStatus
-from .validators import DishValidator, OrderValidator
+from order.order_enums import OrderStatus
+from order.validators import DishValidator, OrderValidator
 
 
 class Order(models.Model):
