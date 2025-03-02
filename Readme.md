@@ -82,8 +82,6 @@ POST /orders/
 
 ``` json
 	
-Response body
-Download
 {
   "id": 16,
   "table_number": 11,
