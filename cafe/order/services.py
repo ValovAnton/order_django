@@ -7,7 +7,7 @@ from order.order_enums import OrderStatus, ErrorMessage
 class OrderService:
 
     @staticmethod
-    def create_order(table: int, status: OrderStatus, items_data: list[dict]) -> Order:
+    def create_order(table: int, items_data: list[dict] = None, status = OrderStatus.PENDING) -> Order:
         """Создать заказ с позициями"""
         order = Order.objects.create(table_number=table, status=status)
         for dish_data in items_data:

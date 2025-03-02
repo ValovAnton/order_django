@@ -24,10 +24,12 @@ class CreateOrderView(View):
         names = request.POST.getlist("order_items[][name]")
         prices = request.POST.getlist("order_items[][price]")
 
+        print(names, prices)
         if prices != [""] and names != [""]:  # TODO тут подумай
             if len(prices) == len(names):
                 for name, price in zip(names, prices):
                     items_data.append({"name": name, "price": price})
+                    print (items_data)
 
                 OrderService.create_order(table_number, items_data)
             return redirect("order_list")
