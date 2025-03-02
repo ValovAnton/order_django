@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+
 from order.models import Order, Dish, OrderItem
 
 
@@ -6,6 +7,7 @@ class Command(BaseCommand):
     help = "Заполняет базу данных тестовыми данными"
 
     def handle(self, *args, **kwargs):
+        # TODO попробуй Faker, factoryboy
         try:
             for i in range(1, 5):
                 price = i * 100

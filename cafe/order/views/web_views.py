@@ -149,7 +149,7 @@ class TodayProfitView(TemplateView):
             selected_date = timezone.now().date()
 
         orders = OrderService.get_today_orders(selected_date).filter(
-            status=OrderStatus.COMPLETED
+            status=OrderStatus.PAID
         )
 
         context["profit"] = sum(order.total_price for order in orders) if orders else 0

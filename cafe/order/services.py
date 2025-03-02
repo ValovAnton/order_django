@@ -61,4 +61,6 @@ class OrderService:
         """Получить заказы за какой-то день,
         если фильтр None, то фильтр = сегодняшний день"""
         filter_date = filter_date or timezone.now().date()
-        return Order.objects.filter(created_at__date=filter_date)
+        result = Order.objects.filter(created_at__date=filter_date)
+        print(result.query)
+        return result
